@@ -1,214 +1,115 @@
-# 🎯 Canvas do Projeto Final — App Android
+🎯 Canvas do Projeto Final — Aplicativo Android
+Informações do projeto
+Grupo: Alexsandro Soares, Ana Beatrys, Cauanne Victória, Laryssa Domingos, Júlia Allana
+Turma: 3º ano A — Ensino Médio
+Repositório: cvmms16/beta
+Data: 16/09/2026
+Entrega: 10/12/2026
+🧩 Bloco 1 — Nome e pitch
+
+Nome do app: Beta
+
+Pitch: O Beta ajuda a administradora da Beta Turismo a organizar viagens, passageiros, pagamentos e reservas de assentos em um único sistema.
+
+😖 Bloco 2 — Problema
+
+Problema: A organização manual dificulta visualizar passageiros confirmados, pagamentos, cancelamentos e assentos disponíveis em cada viagem.
+
+Como é feito hoje: As reservas são controladas manualmente, dificultando a organização e o acompanhamento das viagens.
+
+👥 Bloco 3 — Público-alvo
+Perfil principal: Administradora da Beta Turismo.
+Uso: Cadastro, organização e acompanhamento de viagens, passageiros e reservas.
+💡 Bloco 4 — Solução em uma tela
+
+A tela principal apresenta as viagens cadastradas, permitindo consultar seus detalhes e realizar reservas.
+
+Lista: Viagens disponíveis, com destino e dados.
+Ação principal: Escolher uma viagem e selecionar um assento disponível.
+Resultado: Confirmação da reserva e assento escolhido.
+✅ Bloco 5 — Funcionalidades do MVP
+#	Funcionalidade	Essencial?	Quem faz
+F1	Cadastrar e visualizar viagens	Sim	Administradora
+F2	Visualizar ônibus e assentos disponíveis	Sim	Administradora
+F3	Realizar, cancelar e consultar reservas	Sim	Administradora
+F4	Controlar pagamentos dos passageiros	Sim	Administradora
+🚫 Bloco 6 — Fora do escopo
+❌ Pagamento online no aplicativo.
+❌ Chat entre passageiros.
+❌ Notificações push e integração com WhatsApp.
+❌ Sincronização em nuvem ou sistema para múltiplas empresas.
+⚙️ Bloco 7 — Caminho técnico
+
+Tecnologias: Kotlin, Jetpack Compose, Room, Android Jetpack e Git/GitHub.
+
+Try/catch: Será usado em operações de armazenamento e recuperação de dados para evitar que erros fechem o aplicativo.
+
+Pode falhar: Salvamento, alteração ou exclusão de viagens e reservas.
+
+Mensagem: Não foi possível realizar esta ação. Tente novamente.
+
+Validação: Impedir reservas em assentos já ocupados.
+
+🎨 Bloco 8 — Identidade visual
+Item	Definição
+Nome	Beta
+Cor principal	#ffc222
+Ícone	“Vai de Beta Turismo”, com azul, amarelo e elementos relacionados a viagens
+ID	br.edu.ifpe.beta
+Versão	1.0 (versionCode 1)
+👤 Bloco 9 — Equipe, papéis e riscos
+Integrante	Papel principal	Responsável por
+Alexsandro e Laryssa	Dev / telas	Interfaces e navegação
+Júlia	Dev / dados	Banco e operações de dados
+Cauanne	Design	Identidade visual
+Ana	Documentação	README, testes e builds
+
+Riscos:
+
+Planta dos ônibus complexa → simplificar mantendo seleção e status dos assentos.
+Muitas funcionalidades → priorizar as quatro do MVP.
+🤖 Bloco 10 — Acordo de trabalho com IA
+
+A implementação pode utilizar o Gemini no Android Studio. Todo código gerado deve ser compreendido, revisado e testado pela equipe.
+
+Regras:
+
+A IA deve seguir o escopo definido.
+Todo código gerado ou alterado deve ser revisado e testado.
+A IA deve seguir a arquitetura e tecnologias do projeto.
+
+Combinados: Não aceitar alterações sem revisão, não inserir senhas ou chaves de API e revisar o projeto antes dos marcos.
+
+Conhecimento: Quem implementar uma funcionalidade deverá explicar seu funcionamento aos demais.
+
+🗓️ Bloco 11 — Marcos
+Marco	Prazo	Comprovação no GitHub
+M1 — Canvas + repositório	16/09	CANVAS.md
+M2 — PRD + telas	30/09	PRD.md + imagens
+M3 — Funcionalidade base	21/10	Tela + ação + try/catch
+M4 — Dados + erros tratados	11/11	Commits da camada de dados
+M5 — Identidade visual + APK	25/11	APK testado
+M6 — AAB + material de loja + README	02/12	Materiais + README
+Entrega e apresentação	10/12	v1.0
+🏁 Bloco 12 — Definição de pronto
+
+O aplicativo estará pronto quando:
+
+Abrir e funcionar sem fechar sozinho.
+Exibir dados reais.
+A ação principal funcionar.
+Erros apresentarem mensagens claras.
+Possuir nome, ícone e identidade visual próprios.
+Duas pessoas externas conseguirem utilizá-lo.
+README.md, USO_DE_IA.md e AGENTS.md estiverem preenchidos.
+Todos os integrantes conseguirem realizar pequenas alterações.
+Os arquivos possuírem os comentários de fronteira definidos pela equipe.
+✍️ Validação do professor
 
-> **Como usar:** este é o primeiro documento do projeto. Preencha em grupo, em uma única aula, **antes de escrever qualquer linha de código**. Cada bloco tem no máximo 5 linhas — se não couber, o projeto está grande demais. Depois de preenchido e validado pelo professor, ele vira a base do `PRD.md`.
+Dados: ____________________
 
-## Informações do projeto
+Situação: Aprovado / Aprovado com / Refazer
 
-- **Grupo nº:** 
-- **Integrantes (3 a 4):**
-  - Alexsandro Soares
-  - Ana Beatrys
-  - Cauanne Victória
-  - Laryssa domingos
-  - Julia Allana
-- **Turma:** 3º ano A — Ensino Médio
-- **Repositório:** https://github.com/cvmms16/beta
-- **Data de preenchimento:** 16/09/2026
-- **Entrega final:** 10/12/2026
+Observações: ____________________
 
----
-
-## 🧩 Bloco 1 — Nome e pitch do app
-
-**Nome do app:** *(máx. 30 caracteres — é o mesmo que vai na loja)*
-
-**Pitch em uma frase:**
-
-> O **Beta** ajuda empresas de turismo a organizar **viagens, passageiros, pagamentos e reservas de assentos** sem precisar controlar essas informações manualmente ou em listas separadas.
-
----
-
-## 😖 Bloco 2 — Problema
-
-**Qual dor real vocês estão resolvendo? Descrevam uma situação concreta que alguém vive hoje.**
-
-**Como esse problema é resolvido hoje (sem o app)?**
-
-As reservas precisam ser organizadas manualmente, dificultando a visualização de quem está confirmado, quem pagou, quem cancelou e quais assentos ainda estão disponíveis em cada viagem.
-
----
-
-## 👥 Bloco 3 — Público-alvo
-
-**Para quem é o app? Sejam específicos (idade, contexto, com que frequência usariam).**
-
-- **Perfil principal:** Pequenas empresas de turismo e responsáveis pela organização de viagens.
-- **Quando/onde usam:** Durante o cadastro, organização e acompanhamento das viagens e reservas.
-- **Uma pessoa real que testaria o app:** Betânia, responsável pela empresa de turismo que apresentou o problema.
-
----
-
-## 💡 Bloco 4 — Solução em uma tela
-
-**Descreva o que a tela principal mostra e o que o usuário consegue fazer nela.**
-
-A tela principal mostrará as **viagens cadastradas**, permitindo que o usuário escolha uma viagem para consultar seus detalhes e realizar uma reserva.
-
-- **A tela principal lista:** As viagens disponíveis, com destino e data.
-- **A ação principal do usuário é:** Escolher uma viagem e selecionar um assento disponível.
-- **Depois de agir, o usuário vê:** A confirmação da reserva e o assento escolhido.
-
----
-
-## ✅ Bloco 5 — Funcionalidades do MVP
-
-**Máximo de 4 funcionalidades. Se tiver mais, corte. Lembre: qualidade acima de complexidade.**
-
-| # | Funcionalidade | Essencial? | Quem faz |
-|---|---|---|---|
-| F1 | Cadastrar e visualizar viagens | Sim | Administradora |
-| F2 | Visualizar a planta do ônibus e os assentos disponíveis | Sim | Administradora |
-| F3 | Realizar, cancelar e consultar reservas | Sim | Administradora |
-| F4 | Controlar o status de pagamento dos passageiros | Sim | Administradora |
-
----
-
-## 🚫 Bloco 6 — Fora do escopo
-
-**O que o app não vai fazer nesta entrega. Escrever isso aqui protege vocês de perder o prazo.**
-
-- ❌ Pagamento online dentro do aplicativo.
-- ❌ Sistema de chat ou comunicação entre passageiros.
-- ❌ Notificações push e integração com WhatsApp.
-- ❌ Sincronização em nuvem ou sistema completo para múltiplas empresas.
-
-*Sugestões comuns de coisas a deixar de fora: login/cadastro, notificações push, chat, mapa, pagamento, modo offline completo, sincronização em nuvem.*
-
----
-
-## ⚙️ Bloco 7 — Caminho técnico
-
-**Marque uma opção (as três valem a mesma nota):**
-
-- **Opção A — Room:** dados salvos no próprio celular (lista de compras, agenda, diário de treino, controle financeiro)
-- **Opção B — Retrofit:** dados vindos de uma API pública (notícias, filmes, feed, clima)
-- **Opção C — Desafio:** API + salvar favoritos localmente
-
-**Se escolheu B ou C — qual API?** *(link da documentação + precisa de chave? é gratuita?)*
-
-**Bibliotecas que o grupo vai usar:**
-
-- Kotlin
-- Jetpack Compose
-- Room
-- Android Jetpack
-- Git/GitHub
-
-**Onde entra o try/catch?**  
-*(qual operação pode falhar: banco vazio, internet caindo, API fora do ar, campo em branco)*
-
-O **try/catch** será utilizado principalmente nas operações que envolvem o armazenamento e recuperação dos dados, evitando que erros façam o aplicativo fechar inesperadamente.
-
-- **Pode falhar:** Salvamento, alteração ou exclusão de uma viagem ou reserva.
-- **O usuário vê a mensagem:** `Não foi possível realizar esta ação. Tente novamente.`
-- Também serão realizadas validações para impedir, por exemplo, que uma reserva seja realizada em um assento que já esteja ocupado.
-
----
-
-## 🎨 Bloco 8 — Identidade visual
-
-| Item | Definição do grupo |
-|---|---|
-| **Nome exibido (strings.xml)** | Beta |
-| **Cor principal (hex, em Color.kt)** | `#ffc222` |
-| **Ideia do ícone (512×512)** | A logo apresenta o nome **“Vai de Beta Turismo”** em destaque, com as cores **azul e amarelo**, além de elementos que remetem a viagens, como **um ônibus, um avião, o sol e linhas de movimento**. A composição transmite a ideia de **turismo, viagem, transporte e aventura**. |
-| **applicationId** | `br.edu.ifpe.beta` |
-| **Versão inicial** | `1.0 (versionCode 1)` |
-
----
-
-## 👤 Bloco 9 — Equipe, papéis e riscos
-
-| Integrante | Papel principal | Responsável por |
-|---|---|---|
-| Alexsandro Soares e Laryssa Vitória | Dev / telas | Interfaces e navegação |
-| Júlia | Dev / dados (Room ou Retrofit) | Room, entidades e operações do banc |
-| Cauanne Vitòria | Design e identidade visual | Cores, ícone e organização visual |
-| ana | Documentação, build e entrega | README, documentação, testes e builds |
-
-> Todos programam. O **“papel”** define quem responde por aquela parte, não quem trabalha sozinho.
-
-### Riscos — o que pode dar errado e o plano B
-
-| Risco | Plano B |
-|---|---|
-| A implementação da planta dos ônibus ficar muito complexa | Criar uma planta visual mais simples, mantendo a seleção e o status dos assentos. |
-| O grupo não conseguir implementar todas as funcionalidades | Priorizar as quatro funcionalidades do MVP e retirar funcionalidades extras. |
-
----
-
-## 🤖 Bloco 10 — Acordo de trabalho com IA
-
-A implementação pode ser feita com o **Gemini no Android Studio**. Vocês orientam, ele digita — e cada integrante precisa saber explicar o que entrou no projeto. Regras completas em `docs/USO_DE_IA.md`.
-
-### Três regras que vamos escrever no nosso AGENTS.md
-
-1. A IA deve explicar as alterações realizadas quando solicitado e não deve adicionar funcionalidades fora do escopo definido no PRD.
-2. Todo código gerado ou alterado pela IA deve ser revisado e testado por um integrante da equipe antes de ser aceito.
-3. A IA deve seguir a arquitetura, tecnologias e padrões definidos pelo grupo, evitando alterações desnecessárias no projeto.
-
-### Combinados do grupo
-
-- Ninguém clica **Accept** no Agent Mode sem ler a mudança inteira.
-- Quem aceitou o código escreve o comentário de fronteira do arquivo.
-- Antes de cada marco, revisamos juntos: alguém aqui não entende alguma parte?
-- Nenhuma chave de API ou senha vai para o prompt.
-- **Outro combinado nosso:** 
-
-### Como vamos garantir que todos entendem tudo
-
-Quem implementar uma funcionalidade deverá apresentar aos outros integrantes como ela funciona. O grupo também fará revisões em conjunto antes dos principais marcos e cada integrante deverá realizar pequenas alterações no projeto individualmente.
-
----
-
-## 🗓️ Bloco 11 — Marcos até 10/12
-
-| Marco | Prazo | Como se comprova no GitHub |
-|---|---|---|
-| M1 — Canvas preenchido + repositório criado | 16/09 | `CANVAS.md` no main |
-| M2 — PRD aprovado + telas rascunhadas | 30/09 | `PRD.md` + imagens em `docs/` |
-| M3 — Funcionalidade base rodando | 21/10 | tela principal lista dados + 1 ação + try/catch |
-| M4 — Dados completos (Room/Retrofit) e erros tratados | 11/11 | commits da camada de dados |
-| M5 — Identidade visual + `.apk` de release testado | 25/11 | ícone, cores, `.apk` testado por 2 pessoas de fora |
-| M6 — `.aab` + material de loja + README.md | 02/12 | pasta `loja/` + `README.md` completo |
-| **Entrega e apresentação** | **10/12** | tag `v1.0` no repositório |
-
----
-
-## 🏁 Bloco 12 — Definição de pronto
-
-O grupo só considera o app pronto quando **todas** estas frases forem verdadeiras:
-
-- [ ] O app abre e não fecha sozinho depois de 5 minutos de uso.
-- [ ] A tela principal mostra dados reais (não texto de exemplo fixo no código).
-- [ ] A ação principal funciona e o resultado aparece na tela.
-- [ ] Quando algo falha, aparece uma mensagem clara — o app não quebra.
-- [ ] O app tem nome, ícone e cor próprios (nada de ícone padrão do Android).
-- [ ] Duas pessoas de fora do grupo instalaram o `.apk` e conseguiram usar sem explicação.
-- [ ] O `README.md` explica o que o app faz, com o que foi feito e como gerar o build.
-- [ ] O `docs/USO_DE_IA.md` e o `AGENTS.md` estão preenchidos.
-- [ ] Cada integrante consegue abrir o projeto e fazer uma mudança pequena sozinho — trocar um texto, acrescentar um campo, mudar a ordem da lista.
-- [ ] Todo arquivo nosso tem o comentário de fronteira escrito por nós.
-
----
-
-## ✍️ Validação do professor
-
-**Data:** 
-
-**Situação:**  
-- [ ] Aprovado
-- [ ] Aprovado com ajustes
-- [ ] Refazer
-
-**Observações:**
+Essa é a versão que eu usaria: não muda a essência do projeto original, apenas deixa o Canvas menor e tira a parte de “cliente/Betânia/empresa que apresentou o problema”, já que o sistema é para a administradora da própria Beta Turismo.
