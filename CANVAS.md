@@ -1,14 +1,15 @@
 🎯 Canvas do Projeto Final — Aplicativo Android
+
 Informações do projeto
 Grupo: Alexsandro Soares, Ana Beatrys, Cauanne Victória, Laryssa Domingos, Júlia Allana
 Turma: 3º ano A — Ensino Médio
 Repositório: cvmms16/beta
 Data: 16/09/2026
 Entrega: 10/12/2026
+
 🧩 Bloco 1 — Nome e pitch
 
 Nome do app: Beta
-
 Pitch: O Beta ajuda a administradora da Beta Turismo a organizar viagens, passageiros, pagamentos e reservas de assentos em um único sistema.
 
 😖 Bloco 2 — Problema
@@ -20,6 +21,7 @@ Como é feito hoje: As reservas são controladas manualmente, dificultando a org
 👥 Bloco 3 — Público-alvo
 Perfil principal: Administradora da Beta Turismo.
 Uso: Cadastro, organização e acompanhamento de viagens, passageiros e reservas.
+
 💡 Bloco 4 — Solução em uma tela
 
 A tela principal apresenta as viagens cadastradas, permitindo consultar seus detalhes e realizar reservas.
@@ -27,6 +29,7 @@ A tela principal apresenta as viagens cadastradas, permitindo consultar seus det
 Lista: Viagens disponíveis, com destino e dados.
 Ação principal: Escolher uma viagem e selecionar um assento disponível.
 Resultado: Confirmação da reserva e assento escolhido.
+
 ✅ Bloco 5 — Funcionalidades do MVP
 #	Funcionalidade	Essencial?	Quem faz
 F1	Cadastrar e visualizar viagens	Sim	Administradora
@@ -38,6 +41,7 @@ F4	Controlar pagamentos dos passageiros	Sim	Administradora
 ❌ Chat entre passageiros.
 ❌ Notificações push e integração com WhatsApp.
 ❌ Sincronização em nuvem ou sistema para múltiplas empresas.
+
 ⚙️ Bloco 7 — Caminho técnico
 
 Tecnologias: Kotlin, Jetpack Compose, Room, Android Jetpack e Git/GitHub.
@@ -68,6 +72,7 @@ Riscos:
 
 Planta dos ônibus complexa → simplificar mantendo seleção e status dos assentos.
 Muitas funcionalidades → priorizar as quatro do MVP.
+
 🤖 Bloco 10 — Acordo de trabalho com IA
 
 A implementação pode utilizar o Gemini no Android Studio. Todo código gerado deve ser compreendido, revisado e testado pela equipe.
@@ -91,6 +96,7 @@ M4 — Dados + erros tratados	11/11	Commits da camada de dados
 M5 — Identidade visual + APK	25/11	APK testado
 M6 — AAB + material de loja + README	02/12	Materiais + README
 Entrega e apresentação	10/12	v1.0
+
 🏁 Bloco 12 — Definição de pronto
 
 O aplicativo estará pronto quando:
