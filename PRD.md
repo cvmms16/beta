@@ -1,547 +1,597 @@
-# PRD — Beta Turismo
+A correção principal fica assim: **5 entidades apenas — Viagem, Ônibus, Passageiro, Reserva e Pagamento**. Mantive a estrutura do PRD e corrigi também os trechos que ainda tratavam “Ônibus da Viagem” como uma entidade separada. 
+
+# PRD — Vai de Beta Turismo
 
 ## 1. Identificação do Projeto
 
-**Nome do aplicativo:** Beta  
-**Nome da solução:** Vai de Beta Turismo  
-**Turma:** 3º ano A — Ensino Médio  
-**Repositório:** https://github.com/cvmms16/beta  
-**Data de preenchimento do Canvas:** 16/09/2026  
-**Entrega final:** 10/12/2026  
-**Versão inicial:** 1.0  
-**Application ID:** `br.edu.ifpe.beta`
-
----
+Nome do aplicativo: Beta
+Nome da solução: Vai de Beta Turismo
+Turma: 3º A
+Versão: 1.0
+Plataforma: Android
+Application ID: br.edu.ifpe.beta
 
 ## 2. Visão Geral
 
-O Beta é um aplicativo Android desenvolvido para ajudar pequenas empresas de turismo a organizar viagens, passageiros, pagamentos e reservas de assentos.
+O Vai de Beta Turismo é um aplicativo Android desenvolvido para auxiliar a administração das viagens da Beta Turismo.
 
-A proposta é substituir o controle manual feito por listas e anotações separadas por uma organização das informações dentro do aplicativo.
+O aplicativo será utilizado somente pela administradora Betânia, que poderá cadastrar e organizar viagens, escolher os ônibus de cada viagem, visualizar os mapas de assentos e controlar os passageiros e seus pagamentos.
 
-O aplicativo terá como foco o cadastro e visualização das viagens, controle dos assentos do ônibus, gerenciamento das reservas e acompanhamento do status de pagamento dos passageiros.
-
----
+Não haverá uma área destinada aos passageiros. Todo o gerenciamento será realizado pela administradora.
 
 ## 3. Problema
 
-As reservas de viagens precisam ser organizadas manualmente, dificultando a visualização de quem está confirmado, quem pagou, quem cancelou e quais assentos ainda estão disponíveis em cada viagem.
+O controle de viagens, passageiros, assentos e pagamentos pode ser feito de forma manual, dificultando a organização das informações.
 
-O Beta busca organizar essas informações em um único aplicativo, facilitando o acompanhamento das viagens e reservas.
-
----
+O aplicativo tem como objetivo centralizar essas informações em um único sistema, facilitando o controle das viagens e permitindo visualizar rapidamente quais passageiros estão em cada ônibus e quais pagamentos foram realizados.
 
 ## 4. Público-Alvo
 
-O público principal são pequenas empresas de turismo e responsáveis pela organização de viagens.
+O aplicativo será destinado exclusivamente à administradora da Beta Turismo, Betânia.
 
-O aplicativo será utilizado durante:
+Não haverá diferentes tipos de usuários ou níveis de acesso no MVP.
 
-- cadastro das viagens;
-- organização dos passageiros;
-- acompanhamento das reservas;
-- controle dos assentos;
-- acompanhamento dos pagamentos.
+## 5. Objetivo do Aplicativo
 
-Uma pessoa que poderá testar o aplicativo é Betânia, responsável pela empresa de turismo que apresentou o problema.
+O aplicativo deverá permitir que a administradora:
 
----
-
-## 5. Objetivo
-
-O objetivo do Beta é facilitar a organização das viagens, passageiros, reservas, assentos e pagamentos em um único aplicativo.
-
-O sistema deverá permitir que a pessoa responsável pela organização consiga cadastrar viagens, visualizar os assentos, realizar reservas, cancelar reservas, consultar reservas e acompanhar o status de pagamento dos passageiros.
-
----
+* Cadastre viagens
+* Edite viagens
+* Exclua viagens
+* Escolha os ônibus de cada viagem
+* Visualize o mapa de assentos de cada ônibus
+* Cadastre passageiros em seus respectivos assentos
+* Edite e remova passageiros
+* Visualize nome, telefone, assento e ônibus de cada passageiro
+* Controle o status de pagamento dos passageiros
 
 ## 6. Fluxo Principal
 
 O fluxo principal do aplicativo será:
 
-**Tela inicial → escolher viagem → visualizar detalhes → visualizar assentos → selecionar assento → realizar reserva → visualizar confirmação.**
+**Tela inicial → Viagem → Ônibus → Mapa de assentos → Passageiro**
 
-A tela principal apresentará as viagens cadastradas, permitindo que o usuário escolha uma viagem para consultar seus detalhes e realizar uma reserva.
+Na tela inicial, a administradora visualizará suas viagens.
 
-Após selecionar um assento disponível, o usuário poderá realizar a reserva e visualizar a confirmação com o assento escolhido.
+Ao selecionar uma viagem, serão exibidas as informações da viagem e os ônibus escolhidos para ela.
 
----
+Ao clicar em um ônibus, seu respectivo mapa de assentos será aberto.
 
-# 7. Funcionalidades do MVP
+A administradora poderá selecionar um assento e cadastrar ou editar o passageiro daquele assento.
 
-O MVP terá quatro funcionalidades principais.
+## 7. MVP
 
-## F1 — Cadastrar e visualizar viagens
+### F1 — Cadastro de Viagem
 
-Permitir o cadastro e a visualização das viagens.
+A administradora poderá cadastrar uma nova viagem informando:
 
-A tela deverá apresentar informações como destino e data.
+* Nome da viagem
+* Destino
+* Data
+* Informações adicionais
+* Imagem de fundo da viagem
+* Ônibus da viagem
 
-**Responsável pelo uso:** Administradora.
+### F2 — Gerenciamento de Viagens
 
-## F2 — Visualizar a planta do ônibus e os assentos disponíveis
+A administradora poderá:
 
-Permitir visualizar uma representação dos assentos do ônibus.
+* Visualizar todas as viagens
+* Abrir uma viagem
+* Editar uma viagem
+* Excluir uma viagem
+* Visualizar as informações cadastradas
 
-Os assentos deverão apresentar seus respectivos status, permitindo identificar quais estão disponíveis e quais estão ocupados.
+### F3 — Ônibus
 
-**Responsável pelo uso:** Administradora.
+Durante o cadastro da viagem, a administradora poderá escolher os ônibus que farão parte dela.
 
-## F3 — Realizar, cancelar e consultar reservas
+Os ônibus disponíveis inicialmente serão:
 
-Permitir:
+* G7
+* DD
 
-- realizar reservas;
-- consultar reservas;
-- cancelar reservas.
+Uma viagem poderá ter um ou mais ônibus.
 
-O sistema deverá impedir que um assento já ocupado seja reservado novamente.
+Os ônibus e seus respectivos mapas de assentos ficarão previamente cadastrados no banco de dados.
 
-Após a realização da reserva, deverá ser apresentada uma confirmação com o assento escolhido.
+A administradora apenas selecionará quais ônibus farão parte da viagem.
 
-**Responsável pelo uso:** Administradora.
+### F4 — Mapa de Assentos
 
-## F4 — Controlar o status de pagamento dos passageiros
+Os ônibus escolhidos ficarão disponíveis dentro da viagem.
 
-Permitir acompanhar o status do pagamento dos passageiros relacionados às reservas.
+Ao clicar em um ônibus, o aplicativo abrirá diretamente o mapa de assentos correspondente.
 
-**Responsável pelo uso:** Administradora.
+Cada ônibus terá seu próprio mapa e seus próprios passageiros.
 
----
+Exemplo:
 
-# 8. Fora do Escopo
+Viagem: Natal
 
-Nesta versão, o aplicativo não terá:
+* G7 1
+* DD 1
 
-- pagamento online dentro do aplicativo;
-- sistema de chat entre passageiros;
-- comunicação entre passageiros;
-- notificações push;
-- integração com WhatsApp;
-- sincronização em nuvem;
-- sistema completo para múltiplas empresas.
+Ao clicar no G7 1, será aberto o mapa de assentos do G7 1.
 
-Funcionalidades extras não serão adicionadas sem avaliação do grupo.
+Ao clicar no DD 1, será aberto o mapa de assentos do DD 1.
 
----
+Caso a viagem possua mais de um ônibus, cada um terá seu próprio mapa e seus próprios passageiros.
 
-# 9. Requisitos Funcionais
+### F5 — Cadastro de Passageiro
+
+A administradora poderá cadastrar um passageiro em determinado assento.
+
+Informações:
+
+* Nome
+* Telefone
+* Assento
+* Ônibus
+* Informações adicionais
+
+Exemplo:
+
+Ana
+Telefone: (81) 99999-9999
+Ônibus: G7 1
+Assento: 13
+
+### F6 — Edição e Exclusão de Passageiros
+
+A administradora poderá:
+
+* Editar os dados de um passageiro
+* Alterar seu assento
+* Alterar seus dados
+* Remover o passageiro
+
+### F7 — Controle de Pagamento
+
+Cada passageiro terá um status de pagamento.
+
+O status poderá ser alterado por meio de uma caixa de seleção simples:
+
+☐ Não pago
+☑ Pago
+
+A administradora poderá alterar o status sempre que necessário.
+
+### F8 — Lista de Passageiros
+
+O aplicativo deverá apresentar uma lista com os passageiros cadastrados.
+
+A lista deverá mostrar:
+
+* Nome
+* Telefone
+* Assento
+* Ônibus
+* Status do pagamento
+
+## 8. Funcionalidades
 
 ### RF01 — Cadastro de viagem
-O sistema deverá permitir cadastrar uma nova viagem.
 
-### RF02 — Visualização de viagens
-O sistema deverá apresentar as viagens cadastradas na tela principal.
+O sistema deve permitir o cadastro de novas viagens.
 
-### RF03 — Seleção de viagem
-O sistema deverá permitir selecionar uma viagem para consultar suas informações.
+### RF02 — Edição de viagem
 
-### RF04 — Visualização dos assentos
-O sistema deverá apresentar visualmente os assentos da viagem selecionada.
+O sistema deve permitir alterar os dados de uma viagem cadastrada.
 
-### RF05 — Status dos assentos
-O sistema deverá permitir identificar os assentos disponíveis e ocupados.
+### RF03 — Exclusão de viagem
 
-### RF06 — Reserva
-O sistema deverá permitir realizar uma reserva selecionando um assento disponível.
+O sistema deve permitir excluir uma viagem.
 
-### RF07 — Bloqueio de assento ocupado
-O sistema não deverá permitir reservar um assento que já esteja ocupado.
+### RF04 — Imagem da viagem
 
-### RF08 — Confirmação
-Após uma reserva realizada com sucesso, o sistema deverá apresentar uma confirmação com o assento escolhido.
+O sistema deve permitir adicionar uma imagem para representar a viagem.
 
-### RF09 — Consulta de reserva
-O sistema deverá permitir consultar as reservas realizadas.
+### RF05 — Escolha dos ônibus
 
-### RF10 — Cancelamento
-O sistema deverá permitir cancelar uma reserva.
+O sistema deve permitir escolher um ou mais ônibus para uma viagem durante seu cadastro ou edição.
 
-### RF11 — Status de pagamento
-O sistema deverá permitir controlar o status de pagamento dos passageiros.
+### RF06 — Ônibus
 
-### RF12 — Tratamento de erros
-Quando uma operação não puder ser realizada, o aplicativo deverá apresentar uma mensagem clara ao usuário.
+O sistema deverá possuir inicialmente os ônibus G7 e DD.
 
----
+### RF07 — Mapas de ônibus
 
-# 10. Requisitos Não Funcionais
+Cada ônibus deverá possuir seu mapa de assentos previamente configurado no banco de dados.
 
-### RNF01 — Plataforma
-O aplicativo deverá ser desenvolvido para Android.
+### RF08 — Acesso ao mapa
 
-### RNF02 — Linguagem
-O projeto será desenvolvido utilizando Kotlin.
+Ao clicar em um ônibus dentro da viagem, o sistema deverá abrir diretamente o mapa de assentos correspondente.
 
-### RNF03 — Interface
-A interface será desenvolvida utilizando Jetpack Compose e Material 3.
+### RF09 — Identificação dos ônibus
 
-### RNF04 — Banco de dados
-Os dados serão armazenados localmente utilizando Room.
+Quando houver mais de um ônibus na mesma viagem, o sistema deverá permitir identificar cada ônibus separadamente.
 
-### RNF05 — Navegação
-A navegação entre as telas será realizada utilizando Navigation Compose.
+### RF10 — Cadastro de passageiro
 
-### RNF06 — Operações assíncronas
-O projeto poderá utilizar Coroutines e Flow para trabalhar com operações e observação dos dados.
+O sistema deve permitir cadastrar um passageiro em determinado assento de determinado ônibus.
 
-### RNF07 — Versionamento
-O código será versionado utilizando Git e GitHub.
+### RF11 — Nome do passageiro
 
-### RNF08 — Identidade visual
-O aplicativo deverá possuir nome, ícone e identidade visual próprios.
+Cada assento ocupado deverá apresentar o nome do passageiro relacionado.
 
-### RNF09 — Estabilidade
-O aplicativo não deverá fechar sozinho durante a utilização normal.
+### RF12 — Telefone do passageiro
 
-### RNF10 — Tratamento de erros
-As operações que possam apresentar falhas deverão ser tratadas para evitar o fechamento inesperado do aplicativo.
+O sistema deverá armazenar o telefone do passageiro.
 
----
+### RF13 — Edição de passageiro
 
-# 11. Tecnologias
+O sistema deverá permitir editar os dados do passageiro.
 
-O projeto utilizará:
+### RF14 — Exclusão de passageiro
 
-- Kotlin;
-- Jetpack Compose;
-- Material 3;
-- Navigation Compose;
-- Room;
-- Android Jetpack;
-- Coroutines;
-- Flow;
-- Git;
-- GitHub.
+O sistema deverá permitir remover um passageiro e liberar o assento.
 
----
+### RF15 — Controle de assentos
 
-# 12. Estrutura Inicial do Projeto
+O sistema deverá impedir que dois passageiros sejam cadastrados no mesmo assento do mesmo ônibus.
 
-```text
-app/
-└── src/
-    └── main/
-        └── java/
-            └── br/
-                └── edu/
-                    └── ifpe/
-                        └── beta/
-                            ├── data/
-                            │   ├── local/
-                            │   ├── remote/
-                            │   └── repository/
-                            │
-                            ├── model/
-                            │
-                            ├── ui/
-                            │   ├── theme/
-                            │   ├── navigation/
-                            │   └── features/
-                            │
-                            └── MainActivity.kt
-```
+### RF16 — Status de pagamento
 
----
+O sistema deverá permitir marcar o pagamento como pago ou não pago.
 
-# 13. Entidades Principais
+### RF17 — Lista de passageiros
 
-## Viagem
+O sistema deverá apresentar os passageiros cadastrados com seus respectivos dados.
 
-Representa uma viagem cadastrada.
+### RF18 — Associação dos dados
 
-Possíveis informações:
+Cada passageiro deverá estar associado à sua viagem, ônibus e assento.
 
-- id;
-- destino;
-- data;
-- informações da viagem.
+### RF19 — Mensagens de erro
 
-## Assento
+O sistema deverá informar quando houver dados obrigatórios não preenchidos ou alguma operação inválida.
 
-Representa um assento de uma viagem.
+## 9. Requisitos Não Funcionais
 
-Possíveis informações:
+O aplicativo deverá:
 
-- id;
-- número do assento;
-- viagem relacionada;
-- status.
+* Ser desenvolvido para Android
+* Utilizar Kotlin
+* Utilizar Jetpack Compose
+* Utilizar Material 3
+* Utilizar Room para armazenamento local
+* Utilizar Navigation Compose
+* Utilizar Coroutines e Flow quando necessário
+* Possuir interface simples e fácil de utilizar
+* Manter os dados armazenados mesmo após fechar o aplicativo
+* Possuir funcionamento estável durante o uso
 
-## Reserva
+## 10. Tecnologias
 
-Representa uma reserva realizada.
+* Kotlin
+* Android Studio
+* Jetpack Compose
+* Material 3
+* Room
+* Navigation Compose
+* Coroutines
+* Flow
+* Git
+* GitHub
 
-Possíveis informações:
+## 11. Entidades Principais
 
-- id;
-- viagem;
-- passageiro;
-- assento;
-- status da reserva.
+### Viagem
 
-## Passageiro
+Representa uma viagem cadastrada pela administradora.
 
-Representa a pessoa relacionada à reserva.
+Dados:
 
-Possíveis informações:
+* ID
+* Nome
+* Destino
+* Data
+* Imagem
+* Informações adicionais
 
-- id;
-- nome;
-- informações necessárias para identificação.
+Uma viagem poderá possuir um ou mais ônibus.
 
-## Pagamento
+### Ônibus
 
-Representa o status do pagamento relacionado ao passageiro ou à reserva.
+Representa um ônibus utilizado em uma viagem.
 
-Possíveis informações:
+Dados:
 
-- id;
-- reserva;
-- status do pagamento.
+* ID
+* Modelo
+* Identificação
+* Imagem
+* Quantidade de assentos
+* Configuração do mapa
 
----
+Os ônibus G7 e DD e seus respectivos mapas de assentos ficarão previamente cadastrados no banco de dados.
 
-# 14. Telas do Aplicativo
+A administradora selecionará o ônibus que fará parte da viagem.
 
-## Tela 1 — Viagens
+### Passageiro
 
-Será a tela principal.
+Representa uma pessoa cadastrada em uma viagem.
 
-Deverá apresentar as viagens cadastradas, mostrando informações como destino e data.
+Dados:
 
-O usuário poderá selecionar uma viagem.
+* ID
+* Nome
+* Telefone
+* Informações adicionais
 
-## Tela 2 — Detalhes da Viagem
+### Reserva
 
-Apresentará as informações da viagem selecionada.
+Representa a relação entre passageiro, viagem, ônibus e assento.
 
-A partir dela, o usuário poderá acessar os assentos.
+Dados:
 
-## Tela 3 — Assentos
+* ID
+* Passageiro
+* Viagem
+* Ônibus
+* Número do assento
+* Status
 
-Apresentará uma planta visual simplificada do ônibus.
+### Pagamento
 
-Deverá permitir identificar:
+Representa o status do pagamento de uma reserva.
 
-- assentos disponíveis;
-- assentos ocupados;
-- assento selecionado.
+Dados:
 
-## Tela 4 — Reserva
+* ID
+* Reserva
+* Status do pagamento
 
-Apresentará as informações da reserva antes da confirmação.
+## 12. Relacionamento das Entidades
 
-Após confirmar, deverá mostrar o resultado da reserva e o assento escolhido.
+O relacionamento principal será:
 
-## Tela 5 — Reservas e Pagamentos
+**Viagem → Ônibus → Reserva → Passageiro → Pagamento**
 
-Permitirá consultar as reservas e acompanhar o status de pagamento dos passageiros.
+Uma viagem possui um ou mais ônibus.
 
----
+Cada ônibus possui uma configuração de mapa de assentos.
 
-# 15. Tratamento de Erros
+Cada reserva está relacionada a um passageiro, a um ônibus e a um assento.
 
-O `try/catch` será utilizado principalmente nas operações de armazenamento e recuperação dos dados.
+Cada passageiro poderá possuir uma reserva.
 
-Poderão ocorrer erros durante:
+Cada reserva possuirá um status de pagamento.
 
-- salvamento de uma viagem;
-- alteração de uma viagem;
-- exclusão de uma viagem;
-- salvamento de uma reserva;
-- consulta dos dados.
+## 13. Telas do Aplicativo
 
-Quando ocorrer um erro, deverá ser apresentada uma mensagem clara, como:
+### Tela 1 — Viagens
 
-**"Não foi possível realizar esta ação. Tente novamente."**
+Será a tela inicial do aplicativo.
 
-Também serão realizadas validações para evitar situações como uma reserva em um assento que já esteja ocupado.
+Deverá apresentar:
 
----
+* Lista de viagens cadastradas
+* Nome da viagem
+* Destino
+* Data
+* Imagem da viagem
+* Botão para adicionar uma nova viagem
 
-# 16. Identidade Visual
+A administradora poderá editar ou excluir uma viagem.
 
-**Nome exibido:** Beta
+### Tela 2 — Cadastro de Viagem
 
-**Cor principal:** `#FFC222`
+A administradora poderá informar:
 
-A identidade visual terá como base as cores azul e amarelo.
+* Nome
+* Destino
+* Data
+* Informações adicionais
+* Imagem
+* Ônibus
 
-A ideia do ícone é apresentar o nome **"Vai de Beta Turismo"** junto a elementos relacionados a viagens, como:
+Nesta mesma tela será possível escolher os ônibus que farão parte da viagem.
 
-- ônibus;
-- avião;
-- sol;
-- linhas de movimento.
+### Tela 3 — Detalhes da Viagem
 
-A identidade deverá transmitir a ideia de turismo, viagem, transporte e aventura.
+Apresentará:
 
----
+* Nome da viagem
+* Destino
+* Data
+* Imagem
+* Informações adicionais
+* Ônibus
 
-# 17. Application ID e Versão
+Os ônibus escolhidos aparecerão nessa tela.
 
-**Application ID:**
+Exemplo:
 
-`br.edu.ifpe.beta`
+Natal
 
-**Versão inicial:** `1.0`
+G7 1
+DD 1
 
-**Version Code:** `1`
+Ao clicar em um ônibus, o aplicativo abrirá diretamente o mapa de assentos daquele ônibus.
 
----
+### Tela 4 — Mapa do Ônibus
 
-# 18. Equipe
+Apresentará o mapa de assentos correspondente ao ônibus selecionado.
 
-## Alexsandro Soares e Laryssa Vitória
+Cada assento poderá apresentar:
 
-**Papel:** Desenvolvimento / telas
+* Número do assento
+* Nome do passageiro, quando ocupado
+* Indicação de assento disponível ou ocupado
 
-**Responsabilidades:**
+Ao selecionar um assento, a administradora poderá cadastrar ou editar o passageiro.
 
-- interfaces;
-- telas;
-- navegação;
-- integração entre as telas;
-- funcionamento do fluxo principal.
+Também poderá ser apresentada a lista de passageiros relacionada ao ônibus.
 
-## Júlia Allana
+### Tela 5 — Passageiro
 
-**Papel:** Desenvolvimento / dados
+Permite cadastrar ou editar os dados do passageiro.
 
-**Responsabilidades:**
+Campos:
 
-- Room;
-- entidades;
-- banco de dados;
-- operações de armazenamento;
-- operações de consulta, alteração e exclusão.
+* Nome
+* Telefone
+* Assento
+* Informações adicionais
+* Status do pagamento
 
-## Cauanne Victória
+### Tela 6 — Lista de Passageiros
 
-**Papel:** Design e identidade visual
+Apresentará os passageiros da viagem ou do ônibus selecionado.
 
-**Responsabilidades:**
+Informações:
 
-- cores;
-- identidade visual;
-- ícone;
-- organização visual;
-- aparência das telas.
+* Nome
+* Telefone
+* Assento
+* Ônibus
+* Pagamento
 
-## Ana Beatrys
+A administradora poderá editar ou excluir um passageiro.
 
-**Papel:** Documentação, build e entrega
+## 14. Tratamento de Erros
 
-**Responsabilidades:**
+O aplicativo deverá apresentar mensagens quando:
 
-- README;
-- documentação;
-- testes;
-- builds;
-- APK;
-- AAB;
-- materiais de entrega.
+* Nome da viagem não for informado
+* Data não for informada
+* Nenhum ônibus for escolhido
+* Nome do passageiro não for informado
+* Tentarem ocupar um assento já ocupado
+* Algum dado obrigatório estiver faltando
+* Ocorrer algum erro no armazenamento dos dados
 
-Todos os integrantes participam da programação. Os papéis definem principalmente quem ficará responsável por cada área.
+## 15. Identidade Visual
 
----
+A identidade visual deverá representar a Beta Turismo, utilizando uma interface simples, organizada e fácil de utilizar.
 
-# 19. Riscos
+As telas deverão priorizar:
 
-## Risco 1 — Planta do ônibus ficar muito complexa
+* Boa visualização das informações
+* Organização dos assentos
+* Facilidade para localizar passageiros
+* Identificação clara dos pagamentos
+* Navegação simples
 
-**Plano B:** Criar uma planta visual mais simples, mantendo a seleção e o status dos assentos.
+## 16. Application ID e Versão
 
-## Risco 2 — Não conseguir implementar todas as funcionalidades
+Application ID:
 
-**Plano B:** Priorizar as quatro funcionalidades do MVP e retirar funcionalidades extras.
+br.edu.ifpe.beta
 
----
+Versão inicial:
 
-# 20. Uso de Inteligência Artificial
+1.0
 
-A implementação poderá utilizar Inteligência Artificial, como o Gemini no Android Studio.
+## 17. Equipe
 
-A IA deverá seguir as seguintes regras:
+Equipe responsável pelo desenvolvimento do projeto:
 
-1. A IA deverá explicar as alterações realizadas quando solicitado e não deverá adicionar funcionalidades fora do escopo definido no PRD.
-2. Todo código gerado ou alterado pela IA deverá ser revisado e testado por um integrante da equipe antes de ser aceito.
-3. A IA deverá seguir a arquitetura, tecnologias e padrões definidos pelo grupo, evitando alterações desnecessárias no projeto.
+* Julia
+* Betânia
+* Demais integrantes definidos pela equipe
 
-### Combinados do grupo
+## 18. Riscos
 
-- Ninguém deverá clicar em Accept no Agent Mode sem ler a mudança inteira.
-- Quem aceitar o código deverá escrever o comentário de fronteira do arquivo.
-- Antes de cada marco, o grupo deverá revisar o projeto em conjunto.
-- Nenhuma chave de API ou senha será colocada no prompt.
-- Quem implementar uma funcionalidade deverá apresentar aos outros integrantes como ela funciona.
-- Cada integrante deverá realizar pequenas alterações no projeto individualmente.
+Principais riscos:
 
----
+* Erros na configuração dos mapas de assentos
+* Cadastro incorreto de passageiros
+* Conflito de assentos
+* Perda de dados
+* Dificuldades na implementação do banco de dados
+* Problemas de navegação entre as telas
 
-# 21. Cronograma
+## 19. Uso de Inteligência Artificial
 
-| Marco | Prazo | Comprovação |
-|---|---|---|
-| M1 — Canvas preenchido + repositório | 16/09/2026 | `CANVAS.md` no main |
-| M2 — PRD aprovado + telas rascunhadas | 30/09/2026 | `PRD.md` + imagens em `docs/` |
-| M3 — Funcionalidade base funcionando | 21/10/2026 | Tela principal + 1 ação + `try/catch` |
-| M4 — Dados completos e erros tratados | 11/11/2026 | Commits da camada de dados |
-| M5 — Identidade visual + APK | 25/11/2026 | Ícone + cores + APK testado |
-| M6 — AAB + material de loja + README | 02/12/2026 | Pasta `loja/` + README |
-| Entrega e apresentação | 10/12/2026 | Tag `v1.0` |
+A inteligência artificial poderá ser utilizada como apoio durante o desenvolvimento, principalmente para:
 
----
+* Auxiliar na identificação de erros
+* Explicar conceitos
+* Sugerir soluções para problemas de código
+* Auxiliar na documentação
+* Apoiar a organização do projeto
 
-# 22. Critérios de Aceitação
+O código deverá ser compreendido e revisado pela equipe antes de ser utilizado.
 
-O aplicativo será considerado pronto quando:
+## 20. Cronograma
 
-- [ ] O aplicativo abre e não fecha sozinho depois de 5 minutos de uso.
-- [ ] A tela principal mostra dados reais.
-- [ ] A ação principal funciona.
-- [ ] O resultado da ação aparece na tela.
-- [ ] Quando algo falha, aparece uma mensagem clara.
-- [ ] O aplicativo possui nome próprio.
-- [ ] O aplicativo possui ícone próprio.
-- [ ] O aplicativo possui cores próprias.
-- [ ] Duas pessoas de fora do grupo conseguiram instalar e utilizar o APK.
-- [ ] O `README.md` explica o que o aplicativo faz.
-- [ ] O `README.md` explica como o projeto foi desenvolvido.
-- [ ] O `README.md` explica como gerar o build.
-- [ ] O `docs/USO_DE_IA.md` está preenchido.
-- [ ] O `AGENTS.md` está preenchido.
-- [ ] Cada integrante consegue realizar uma pequena alteração sozinho.
-- [ ] Todo arquivo possui o comentário de fronteira definido pelo grupo.
+### Etapa 1
 
----
+Definição do projeto e organização do PRD.
 
-# 23. Entregáveis
+### Etapa 2
 
-Ao final do projeto deverão estar disponíveis:
+Criação das telas principais.
 
-- código-fonte do aplicativo;
-- `CANVAS.md`;
-- `PRD.md`;
-- `README.md`;
-- `AGENTS.md`;
-- `docs/USO_DE_IA.md`;
-- imagens das telas/protótipos;
-- APK de release;
-- AAB;
-- materiais para loja;
-- tag `v1.0`.
+### Etapa 3
 
----
+Implementação do banco de dados.
 
-# 24. Definição de Pronto
+### Etapa 4
 
-O projeto será considerado concluído quando todas as funcionalidades do MVP estiverem implementadas, testadas e funcionando.
+Cadastro e gerenciamento de viagens.
 
-Além disso, os critérios de estabilidade, identidade visual, documentação, testes externos, participação dos integrantes e organização do repositório deverão estar cumpridos.
+### Etapa 5
 
-**Versão:** 1.0  
-**Projeto:** Beta — Vai de Beta Turismo  
-**Application ID:** `br.edu.ifpe.beta`  
-**Entrega final:** 10/12/2026
+Implementação dos ônibus e mapas de assentos.
+
+### Etapa 6
+
+Cadastro e gerenciamento de passageiros.
+
+### Etapa 7
+
+Implementação do controle de pagamentos.
+
+### Etapa 8
+
+Testes e correções.
+
+### Etapa 9
+
+Finalização e apresentação do aplicativo.
+
+## 21. Critérios de Aceitação
+
+O aplicativo será considerado funcional quando:
+
+* A administradora conseguir cadastrar uma viagem
+* A administradora conseguir editar e excluir uma viagem
+* A administradora conseguir adicionar uma imagem à viagem
+* A administradora conseguir escolher os ônibus da viagem
+* Os ônibus G7 e DD estiverem disponíveis
+* Cada ônibus possuir seu próprio mapa de assentos
+* Ao clicar no ônibus, seu mapa for aberto diretamente
+* A administradora conseguir cadastrar passageiros
+* Cada passageiro estiver associado ao assento correto
+* O sistema impedir dois passageiros no mesmo assento
+* A administradora conseguir editar e excluir passageiros
+* A administradora conseguir visualizar a lista de passageiros
+* A administradora conseguir marcar o pagamento como pago ou não pago
+* Os dados permanecerem salvos no aplicativo
+
+## 22. Entregáveis
+
+* Aplicativo Android funcional
+* Código-fonte
+* Banco de dados local
+* Mapas dos ônibus G7 e DD
+* Documentação do projeto
+* PRD
+* Repositório GitHub
+
+## 23. Definition of Done
+
+Uma funcionalidade será considerada concluída quando:
+
+* Estiver implementada
+* Estiver funcionando corretamente
+* Estiver integrada ao restante do aplicativo
+* Tiver sido testada
+* Não apresentar erros conhecidos que impeçam seu funcionamento
+* Estiver de acordo com os requisitos definidos neste PRD
+
+**Agora a estrutura de entidades está coerente:** não existe mais a entidade “Ônibus da Viagem”. **Ônibus é uma única entidade**, e G7/DD ficam como os ônibus/configurações disponíveis. O mapa também não virou uma entidade separada.
