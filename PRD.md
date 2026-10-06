@@ -1,4 +1,4 @@
-A correção principal fica assim: **5 entidades apenas — Viagem, Ônibus, Passageiro, Reserva e Pagamento**. Mantive a estrutura do PRD e corrigi também os trechos que ainda tratavam “Ônibus da Viagem” como uma entidade separada. 
+
 
 # PRD — Vai de Beta Turismo
 
