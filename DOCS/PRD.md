@@ -490,10 +490,11 @@ Versão inicial:
 
 Equipe responsável pelo desenvolvimento do projeto:
 
-* Julia
-* Betânia
-* Demais integrantes definidos pela equipe
-
+*Alexsandro Soares
+*Ana Beatrys
+*Cauane Victoria
+*Julia Allana 
+*Laryssa Vitória Domingos
 ## 18. Riscos
 
 Principais riscos:
