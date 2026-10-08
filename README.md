@@ -50,7 +50,7 @@ Android SDK;
 Emulador Android ou dispositivo físico.
 Passos
 Clone o repositório:
-   git clone URL_DO_REPOSITORIO
+git clone URL_DO_REPOSITORIO
 
 Abra o projeto no Android Studio.
 Aguarde a sincronização do Gradle.
@@ -72,6 +72,6 @@ Os usos de Inteligência Artificial serão registrados conforme as orientações
 
 Status
 
-Em desenvolvimento
+🚧 Em desenvolvimento
 
 O Beta está sendo desenvolvido com foco em uma solução simples e funcional para auxiliar na organização das viagens e reservas da VaideBeta.
