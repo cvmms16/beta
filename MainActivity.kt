@@ -1,4 +1,4 @@
-Alexsandro Soares da silva filho, 1 min
+
 package com.example.beta
 import android.os.Bundle
 import androidx.activity.ComponentActivity
