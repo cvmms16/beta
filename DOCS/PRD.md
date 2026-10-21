@@ -595,5 +595,3 @@ Uma funcionalidade será considerada concluída quando:
 * Tiver sido testada
 * Não apresentar erros conhecidos que impeçam seu funcionamento
 * Estiver de acordo com os requisitos definidos neste PRD
-
-**Agora a estrutura de entidades está coerente:** não existe mais a entidade “Ônibus da Viagem”. **Ônibus é uma única entidade**, e G7/DD ficam como os ônibus/configurações disponíveis. O mapa também não virou uma entidade separada.
