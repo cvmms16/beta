@@ -490,11 +490,11 @@ Versão inicial:
 
 Equipe responsável pelo desenvolvimento do projeto:
 
-*Alexsandro Soares - dev/ telas
-*Ana Beatrys- Documentação, build e entrega
-*Cauane Victoria- Design e identidade visual
-*Julia Allana - dev/ dados
-*Laryssa Vitória Domingos- dev/ telas
+Alexsandro Soares - dev/ telas
+Ana Beatrys- Documentação, build e entrega
+Cauane Victoria- Design e identidade visual
+Julia Allana - dev/ dados
+Laryssa Vitória Domingos- dev/ telas
 ## 18. Riscos
 
 Principais riscos:
