@@ -356,5 +356,4 @@ private fun Titulo(texto: String) {
 private fun BotaoVoltar(aoClicar: () -> Unit) {
     Spacer(Modifier.height(8.dp)); OutlinedButton(onClick = aoClicar, modifier = Modifier.fillMaxWidth()) { Text("Voltar") }
 }
-
 private fun moeda(valor: Double): String = "R$ " + String.format(Locale("pt", "BR"), "%.2f", valor)
