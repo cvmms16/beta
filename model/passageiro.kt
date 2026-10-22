@@ -1,12 +1,8 @@
 package com.example.beta.model
 
 data class Passageiro(
+    val id: Int = 0,
     val nome: String,
     val cpf: String,
-    val rg: String,
-    val onibus: String,
-    val assento: String,
-    val preco: String,
-    val formaPagamento: String,
-    val statusPagamento: String
+    val rg: String
 )
