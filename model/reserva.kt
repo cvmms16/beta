@@ -18,19 +18,13 @@ import androidx.room.PrimaryKey
         ForeignKey(
             entity = Viagem::class,
             parentColumns = ["id"],
-            childColumns = ["viagemId"],
-            onDelete = ForeignKey.CASCADE
-        ),
-        ForeignKey(
-            entity = Onibus::class,
-            parentColumns = ["id"],
             childColumns = ["onibusId"],
             onDelete = ForeignKey.CASCADE
-        )
+        ),
+       
     ],
     indices = [
         Index("passageiroId"),
-        Index("viagemId"),
         Index("onibusId")
     ]
 )
