@@ -1,6 +1,6 @@
 package com.example.beta.model
 
-data class Reservas(
+data class Reserva(
     val id: Int = 0,
     val passageiroId: Int,
     val viagemId: Int,
