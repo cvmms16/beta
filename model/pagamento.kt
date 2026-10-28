@@ -3,6 +3,7 @@ package com.example.beta.model
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
@@ -13,7 +14,8 @@ import androidx.room.PrimaryKey
             parentColumns = ["id"],
             childColumns = ["reservaId"]
         )
-    ]
+    ],
+    indices = [Index("reservaId")]
 )
 data class Pagamento(
     @PrimaryKey(autoGenerate = true)
@@ -28,4 +30,5 @@ data class Pagamento(
     val saldoRestante: Double
         get() = (valorTotal - valorPago).coerceAtLeast(0.0)
 }
+
 
