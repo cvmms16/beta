@@ -1,3 +1,16 @@
+
 <resources>
     <string name="app_name">BETA</string>
+
+    <!-- Estados da tela principal -->
+    <string name="lista_vazia">Você ainda não cadastrou nenhuma viagem. Toque no botão abaixo para começar.</string>
+
+    <string name="adicionar_primeiro">Adicionar primeira viagem</string>
+
+    <string name="tentar_novamente">Tentar novamente</string>
+
+    <!-- Mensagens de erro -->
+    <string name="erro_conexao">Sem conexão. Verifique a internet e tente novamente.</string>
+
+    <string name="erro_generico">Não foi possível carregar os dados.</string>
 </resources>
