@@ -20,7 +20,7 @@ import androidx.compose.ui.window.Dialog
 import com.example.beta.model.Onibus
 import com.example.beta.model.Pagamento
 import com.example.beta.model.Passageiro
-import com.example.beta.model.Reservas
+import com.example.beta.model.Reserva
 import com.example.beta.model.Viagem
 import java.util.Locale
 
@@ -49,7 +49,7 @@ fun BetaTurismo() {
     val viagens = remember { mutableStateListOf<Viagem>() }
     val onibus = remember { mutableStateListOf<Onibus>() }
     val passageiros = remember { mutableStateListOf<Passageiro>() }
-    val reservas = remember { mutableStateListOf<Reservas>() }
+    val reservas = remember { mutableStateListOf<Reserva>() }
     val pagamentos = remember { mutableStateListOf<Pagamento>() }
 
     var tela by remember { mutableStateOf("inicio") }
@@ -61,6 +61,28 @@ fun BetaTurismo() {
     var passageiroEditando by remember { mutableIntStateOf(0) }
     var busca by remember { mutableStateOf("") }
     var mensagem by remember { mutableStateOf("") }
+
+    var viagensState by remember { mutableStateOf<UiState<List<Viagem>>>(UiState.Carregando) }
+    var onibusState by remember { mutableStateOf<UiState<List<Onibus>>>(UiState.Carregando) }
+    var passageirosState by remember { mutableStateOf<UiState<List<Passageiro>>>(UiState.Carregando) }
+    var reservasState by remember { mutableStateOf<UiState<List<Reserva>>>(UiState.Carregando) }
+    var pagamentosState by remember { mutableStateOf<UiState<List<Pagamento>>>(UiState.Carregando) }
+
+    LaunchedEffect(viagens.size, tela) {
+        viagensState = if (viagens.isEmpty()) UiState.Vazio else UiState.Sucesso(viagens.toList())
+    }
+    LaunchedEffect(onibus.size, tela) {
+        onibusState = if (onibus.isEmpty()) UiState.Vazio else UiState.Sucesso(onibus.toList())
+    }
+    LaunchedEffect(passageiros.size, tela) {
+        passageirosState = if (passageiros.isEmpty()) UiState.Vazio else UiState.Sucesso(passageiros.toList())
+    }
+    LaunchedEffect(reservas.size, tela) {
+        reservasState = if (reservas.isEmpty()) UiState.Vazio else UiState.Sucesso(reservas.toList())
+    }
+    LaunchedEffect(pagamentos.size, tela) {
+        pagamentosState = if (pagamentos.isEmpty()) UiState.Vazio else UiState.Sucesso(pagamentos.toList())
+    }
 
     Scaffold(
         containerColor = Fundo,
@@ -90,15 +112,23 @@ fun BetaTurismo() {
                         Titulo("Viagens cadastradas")
                         TextButton(onClick = { tela = "frota" }) { Text("Frota") }
                     }
-                    if (viagens.isEmpty()) Text("Você ainda não cadastrou nenhuma viagem.", color = Cinza)
-                    else LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        items(viagens) { viagem ->
-                            Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(14.dp)) {
-                                Text("${viagem.origem} → ${viagem.destino}", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Azul)
-                                Text("${viagem.nome} • Ida: ${viagem.ida} • Volta: ${viagem.volta}")
-                                Text("Preço por passageiro: R$ ${viagem.preco}")
-                                Button(onClick = { viagemSelecionadaId = viagens.indexOf(viagem) + 1; tela = "detalhes" }, modifier = Modifier.fillMaxWidth()) { Text("Ver detalhes") }
-                            } }
+                    when (viagensState) {
+                        UiState.Carregando -> EstadoCarregando("Carregando viagens...")
+                        UiState.Vazio -> EstadoVazio("Você ainda não cadastrou nenhuma viagem.")
+                        is UiState.Erro -> EstadoErro(viagensState.mensagem)
+                        is UiState.Sucesso -> {
+                            val lista = viagensState.dados
+                            if (lista.isEmpty()) EstadoVazio("Você ainda não cadastrou nenhuma viagem.")
+                            else LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                                items(lista) { viagem ->
+                                    Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(14.dp)) {
+                                        Text("${viagem.origem} → ${viagem.destino}", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Azul)
+                                        Text("${viagem.nome} • Ida: ${viagem.ida} • Volta: ${viagem.volta}")
+                                        Text("Preço por passageiro: R$ ${viagem.preco}")
+                                        Button(onClick = { viagemSelecionadaId = lista.indexOf(viagem) + 1; tela = "detalhes" }, modifier = Modifier.fillMaxWidth()) { Text("Ver detalhes") }
+                                    } }
+                                }
+                            }
                         }
                     }
                     Spacer(Modifier.height(8.dp))
@@ -123,48 +153,77 @@ fun BetaTurismo() {
                 }
                 "frota" -> {
                     Titulo("Frota de ônibus")
-                    if (onibus.isEmpty()) Text("Nenhum ônibus cadastrado.")
-                    else LazyColumn(Modifier.weight(1f)) { items(onibus) { bus -> Card(Modifier.fillMaxWidth().padding(bottom = 8.dp)) { Column(Modifier.padding(12.dp)) {
-                        Text(bus.nome, fontWeight = FontWeight.Bold); Text("Placa: ${bus.placa.ifBlank { "Não informada" }}")
-                        Text("Assentos: ${bus.assentos} • Acessíveis: ${bus.acessiveis}")
-                    } } } }
+                    when (onibusState) {
+                        UiState.Carregando -> EstadoCarregando("Carregando frota...")
+                        UiState.Vazio -> EstadoVazio("Nenhum ônibus cadastrado.")
+                        is UiState.Erro -> EstadoErro(onibusState.mensagem)
+                        is UiState.Sucesso -> {
+                            val lista = onibusState.dados
+                            if (lista.isEmpty()) EstadoVazio("Nenhum ônibus cadastrado.")
+                            else LazyColumn(Modifier.weight(1f)) {
+                                items(lista) { bus -> Card(Modifier.fillMaxWidth().padding(bottom = 8.dp)) { Column(Modifier.padding(12.dp)) {
+                                    Text(bus.nome, fontWeight = FontWeight.Bold)
+                                    Text("Placa: ${bus.placa.ifBlank { "Não informada" }}")
+                                    Text("Assentos: ${bus.assentos} • Acessíveis: ${bus.acessiveis}")
+                                } } }
+                            }
+                        }
+                    }
                     BotaoVoltar { tela = "inicio" }
                 }
                 "passageiros" -> {
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-                        Titulo("Passageiros"); Button(onClick = { passageiroEditando = 0; mostrarPassageiro = true }) { Text("+ Adicionar") }
+                        Titulo("Passageiros")
+                        Button(onClick = { passageiroEditando = 0; mostrarPassageiro = true }) { Text("+ Adicionar") }
                     }
                     OutlinedTextField(busca, { busca = it }, label = { Text("Buscar por nome ou CPF") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
-                    val filtrados = passageiros.filter { it.nome.contains(busca, true) || it.cpf.contains(busca, true) }
-                    if (filtrados.isEmpty()) Text("Nenhum passageiro encontrado.", color = Cinza)
-                    else LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        items(filtrados) { p -> Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(12.dp)) {
-                            Text(p.nome, fontWeight = FontWeight.Bold, color = Azul); Text("CPF: ${p.cpf} • RG: ${p.rg}")
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                OutlinedButton(onClick = { passageiroEditando = p.id; mostrarPassageiro = true }, modifier = Modifier.weight(1f)) { Text("Editar") }
-                                OutlinedButton(onClick = { reservas.filter { it.passageiroId == p.id }.forEach { r -> pagamentos.removeAll { it.reservaId == r.id }; reservas.remove(r) }; passageiros.remove(p) }, modifier = Modifier.weight(1f)) { Text("Excluir") }
+                    when (passageirosState) {
+                        UiState.Carregando -> EstadoCarregando("Carregando passageiros...")
+                        UiState.Vazio -> EstadoVazio("Nenhum passageiro encontrado.")
+                        is UiState.Erro -> EstadoErro(passageirosState.mensagem)
+                        is UiState.Sucesso -> {
+                            val lista = passageirosState.dados.filter { it.nome.contains(busca, true) || it.cpf.contains(busca, true) }
+                            if (lista.isEmpty()) EstadoVazio("Nenhum passageiro encontrado.")
+                            else LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                items(lista) { p -> Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(12.dp)) {
+                                    Text(p.nome, fontWeight = FontWeight.Bold, color = Azul)
+                                    Text("CPF: ${p.cpf} • RG: ${p.rg}")
+                                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                        OutlinedButton(onClick = { passageiroEditando = p.id; mostrarPassageiro = true }, modifier = Modifier.weight(1f)) { Text("Editar") }
+                                        OutlinedButton(onClick = { reservas.filter { it.passageiroId == p.id }.forEach { r -> pagamentos.removeAll { it.reservaId == r.id }; reservas.remove(r) }; passageiros.remove(p) }, modifier = Modifier.weight(1f)) { Text("Excluir") }
+                                    }
+                                } } }
                             }
-                        } } }
+                        }
                     }
                     BotaoVoltar { tela = "inicio" }
                 }
                 "reservas" -> {
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-                        Titulo("Reservas"); Button(onClick = { mensagem = ""; mostrarReserva = true }) { Text("+ Nova") }
+                        Titulo("Reservas")
+                        Button(onClick = { mensagem = ""; mostrarReserva = true }) { Text("+ Nova") }
                     }
-                    if (reservas.isEmpty()) Text("Nenhuma reserva cadastrada. Cadastre passageiros, viagens e ônibus primeiro.", color = Cinza)
-                    else LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        items(reservas) { r ->
-                            val p = passageiros.find { it.id == r.passageiroId }
-                            val v = viagens.getOrNull(r.viagemId - 1)
-                            val b = onibus.getOrNull(r.onibusId - 1)
-                            Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(12.dp)) {
-                                Text("Reserva #${r.id} • ${r.status}", fontWeight = FontWeight.Bold, color = Azul)
-                                Text("Passageiro: ${p?.nome ?: "Não encontrado"}")
-                                Text("Viagem: ${v?.let { "${it.origem} → ${it.destino}" } ?: "Não encontrada"}")
-                                Text("Ônibus: ${b?.nome ?: "Não encontrado"} • Assento: ${r.numeroAssento}")
-                                OutlinedButton(onClick = { reservas.remove(r); pagamentos.removeAll { it.reservaId == r.id } }, modifier = Modifier.fillMaxWidth()) { Text("Cancelar reserva") }
-                            } }
+                    when (reservasState) {
+                        UiState.Carregando -> EstadoCarregando("Carregando reservas...")
+                        UiState.Vazio -> EstadoVazio("Nenhuma reserva cadastrada. Cadastre passageiros, viagens e ônibus primeiro.")
+                        is UiState.Erro -> EstadoErro(reservasState.mensagem)
+                        is UiState.Sucesso -> {
+                            val lista = reservasState.dados
+                            if (lista.isEmpty()) EstadoVazio("Nenhuma reserva cadastrada. Cadastre passageiros, viagens e ônibus primeiro.")
+                            else LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                items(lista) { r ->
+                                    val p = passageiros.find { it.id == r.passageiroId }
+                                    val v = viagens.getOrNull(r.viagemId - 1)
+                                    val b = onibus.getOrNull(r.onibusId - 1)
+                                    Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(12.dp)) {
+                                        Text("Reserva #${r.id} • ${r.status}", fontWeight = FontWeight.Bold, color = Azul)
+                                        Text("Passageiro: ${p?.nome ?: "Não encontrado"}")
+                                        Text("Viagem: ${v?.let { "${it.origem} → ${it.destino}" } ?: "Não encontrada"}")
+                                        Text("Ônibus: ${b?.nome ?: "Não encontrado"} • Assento: ${r.numeroAssento}")
+                                        OutlinedButton(onClick = { reservas.remove(r); pagamentos.removeAll { it.reservaId == r.id } }, modifier = Modifier.fillMaxWidth()) { Text("Cancelar reserva") }
+                                    } }
+                                }
+                            }
                         }
                     }
                     if (mensagem.isNotBlank()) Text(mensagem, color = MaterialTheme.colorScheme.error)
@@ -172,26 +231,35 @@ fun BetaTurismo() {
                 }
                 "pagamentos" -> {
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-                        Titulo("Pagamentos"); Button(onClick = { mensagem = ""; mostrarPagamento = true }) { Text("+ Registrar") }
+                        Titulo("Pagamentos")
+                        Button(onClick = { mensagem = ""; mostrarPagamento = true }) { Text("+ Registrar") }
                     }
-                    if (pagamentos.isEmpty()) Text("Nenhum pagamento registrado. Crie uma reserva primeiro.", color = Cinza)
-                    else LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        items(pagamentos) { pg ->
-                            val reserva = reservas.find { it.id == pg.reservaId }
-                            val passageiro = reserva?.let { r -> passageiros.find { it.id == r.passageiroId } }
-                            Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(12.dp)) {
-                                Text("Pagamento • ${passageiro?.nome ?: "Reserva #${pg.reservaId}"}", fontWeight = FontWeight.Bold, color = Azul)
-                                Text("Status: ${pg.status} • Forma: ${pg.formaPagamento}")
-                                Text("Total: ${moeda(pg.valorTotal)} • Pago: ${moeda(pg.valorPago)}")
-                                Text("Saldo restante: ${moeda(pg.saldoRestante)} • Parcelas: ${pg.parcelas}")
-                                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                    Button(onClick = {
-                                        val atualizado = pg.copy(valorPago = pg.valorTotal, status = "Pago")
-                                        pagamentos[ pagamentos.indexOf(pg) ] = atualizado
-                                    }, modifier = Modifier.weight(1f), enabled = pg.valorPago < pg.valorTotal) { Text("Quitar saldo") }
-                                    OutlinedButton(onClick = { pagamentos.remove(pg) }, modifier = Modifier.weight(1f)) { Text("Excluir") }
+                    when (pagamentosState) {
+                        UiState.Carregando -> EstadoCarregando("Carregando pagamentos...")
+                        UiState.Vazio -> EstadoVazio("Nenhum pagamento registrado. Crie uma reserva primeiro.")
+                        is UiState.Erro -> EstadoErro(pagamentosState.mensagem)
+                        is UiState.Sucesso -> {
+                            val lista = pagamentosState.dados
+                            if (lista.isEmpty()) EstadoVazio("Nenhum pagamento registrado. Crie uma reserva primeiro.")
+                            else LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                items(lista) { pg ->
+                                    val reserva = reservas.find { it.id == pg.reservaId }
+                                    val passageiro = reserva?.let { r -> passageiros.find { it.id == r.passageiroId } }
+                                    Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(12.dp)) {
+                                        Text("Pagamento • ${passageiro?.nome ?: "Reserva #${pg.reservaId}"}", fontWeight = FontWeight.Bold, color = Azul)
+                                        Text("Status: ${pg.status} • Forma: ${pg.formaPagamento}")
+                                        Text("Total: ${moeda(pg.valorTotal)} • Pago: ${moeda(pg.valorPago)}")
+                                        Text("Saldo restante: ${moeda(pg.saldoRestante)} • Parcelas: ${pg.parcelas}")
+                                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                            Button(onClick = {
+                                                val atualizado = pg.copy(valorPago = pg.valorTotal, status = "Pago")
+                                                pagamentos[pagamentos.indexOf(pg)] = atualizado
+                                            }, modifier = Modifier.weight(1f), enabled = pg.valorPago < pg.valorTotal) { Text("Quitar saldo") }
+                                            OutlinedButton(onClick = { pagamentos.remove(pg) }, modifier = Modifier.weight(1f)) { Text("Excluir") }
+                                        }
+                                    } }
                                 }
-                            } }
+                            }
                         }
                     }
                     if (mensagem.isNotBlank()) Text(mensagem, color = MaterialTheme.colorScheme.error)
@@ -214,7 +282,7 @@ fun BetaTurismo() {
             onCancelar = { mostrarReserva = false },
             onSalvar = { passageiroId, viagemId, onibusId, assento ->
                 val id = (reservas.maxOfOrNull { it.id } ?: 0) + 1
-                reservas.add(Reservas(id, passageiroId, viagemId, onibusId, assento, "Reservado"))
+                reservas.add(Reserva(id, passageiroId, viagemId, onibusId, assento, "Reservado"))
                 mostrarReserva = false
             }, onErro = { mensagem = it })
     }
@@ -231,7 +299,7 @@ fun BetaTurismo() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun FormularioReserva(passageiros: List<Passageiro>, viagens: List<Viagem>, onibus: List<Onibus>, reservas: List<Reservas>, onCancelar: () -> Unit, onSalvar: (Int, Int, Int, Int) -> Unit, onErro: (String) -> Unit) {
+private fun FormularioReserva(passageiros: List<Passageiro>, viagens: List<Viagem>, onibus: List<Onibus>, reservas: List<Reserva>, onCancelar: () -> Unit, onSalvar: (Int, Int, Int, Int) -> Unit, onErro: (String) -> Unit) {
     var pId by remember { mutableIntStateOf(passageiros.firstOrNull()?.id ?: 0) }
     var vId by remember { mutableIntStateOf(if (viagens.isNotEmpty()) 1 else 0) }
     var bId by remember { mutableIntStateOf(if (onibus.isNotEmpty()) 1 else 0) }
@@ -263,7 +331,7 @@ private fun FormularioReserva(passageiros: List<Passageiro>, viagens: List<Viage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun FormularioPagamento(reservas: List<Reservas>, pagamentos: List<Pagamento>, viagens: List<Viagem>, onCancelar: () -> Unit, onSalvar: (Int, Double, Double, String, Int) -> Unit, onErro: (String) -> Unit) {
+private fun FormularioPagamento(reservas: List<Reserva>, pagamentos: List<Pagamento>, viagens: List<Viagem>, onCancelar: () -> Unit, onSalvar: (Int, Double, Double, String, Int) -> Unit, onErro: (String) -> Unit) {
     var reservaId by remember { mutableIntStateOf(reservas.firstOrNull()?.id ?: 0) }
     var totalTexto by remember { mutableStateOf("") }; var pagoTexto by remember { mutableStateOf("0") }
     var forma by remember { mutableStateOf("À vista") }; var parcelasTexto by remember { mutableStateOf("1") }
@@ -358,3 +426,25 @@ private fun BotaoVoltar(aoClicar: () -> Unit) {
 }
 
 private fun moeda(valor: Double): String = "R$ " + String.format(Locale("pt", "BR"), "%.2f", valor)
+
+@Composable
+fun <T> EstadoCarregando(mensagem: String) {
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        CircularProgressIndicator()
+        Text(mensagem, modifier = Modifier.padding(top = 16.dp), color = Cinza)
+    }
+}
+
+@Composable
+fun <T> EstadoVazio(mensagem: String) {
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Text(mensagem, modifier = Modifier.padding(16.dp), color = Cinza, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+    }
+}
+
+@Composable
+fun <T> EstadoErro(mensagem: String) {
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Text("Erro: $mensagem", modifier = Modifier.padding(16.dp), color = MaterialTheme.colorScheme.error, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+    }
+}
