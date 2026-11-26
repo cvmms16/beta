@@ -1,3 +1,20 @@
+<!-- Mensagens de carregamento -->
+<string name="carregando_viagens">Carregando viagens...</string>
+<string name="carregando_onibus">Carregando frota...</string>
+<string name="carregando_passageiros">Carregando passageiros...</string>
+<string name="carregando_reservas">Carregando reservas...</string>
+<string name="carregando_pagamentos">Carregando pagamentos...</string>
+
+<!-- Mensagens de listas vazias -->
+<string name="nenhum_onibus">Nenhum ônibus cadastrado.</string>
+<string name="nenhum_passageiro">Nenhum passageiro encontrado.</string>
+<string name="nenhuma_reserva">Nenhuma reserva cadastrada. Cadastre passageiros, viagens e ônibus primeiro.</string>
+<string name="nenhum_pagamento">Nenhum pagamento registrado. Crie uma reserva primeiro.</string>
+
+<!-- Ações -->
+<string name="adicionar_onibus">Adicionar ônibus</string>
+<string name="adicionar_passageiro">Adicionar passageiro</string>
+<string name="ir_para_reservas">Ir para reservas</string>
 
 <resources>
     <string name="app_name">BETA</string>

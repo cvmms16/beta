@@ -1,7 +1,12 @@
 
 package com.example.beta.model
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 
-data class Pagamento(
+data class Pagamento(tableName = "pagamentos",
     val id: Int = 0,
     val reservaId: Int,
     val valorTotal: Double,

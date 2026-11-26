@@ -3,7 +3,7 @@ package com.example.beta.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity (tableName = "onibus")
 data class Onibus(
     val nome: String,
     val placa: String,
